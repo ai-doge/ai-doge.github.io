@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>ai-doge</title>
+    <link>https://ai-doge.github.io/project-types/ios/</link>
+    <description>Recent content in iOS on ai-doge</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 01 Sep 2023 03:52:30 -0500</lastBuildDate><atom:link href="https://ai-doge.github.io/project-types/ios/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>如何移植</title>
+      <link>https://ai-doge.github.io/posts/emoji-support/</link>
+      <pubDate>Tue, 17 Nov 2020 21:21:46 -0500</pubDate>
+      
+      <guid>https://ai-doge.github.io/posts/emoji-support/</guid>
+      <description>Guide to emoji usage in Hugo.</description>
+    </item>
+    
+  </channel>
+</rss>
