@@ -2,8 +2,33 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://ai-doge.github.io/project-types/ai/</loc>
+    <lastmod>2023-09-08T03:52:30-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://ai-doge.github.io/projects/ai_deep_dream/</loc>
+    <lastmod>2023-09-08T03:52:30-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://ai-doge.github.io/</loc>
-    <lastmod>2023-09-01T21:21:46-05:00</lastmod>
+    <lastmod>2023-09-08T03:52:30-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://ai-doge.github.io/project-types/ios/</loc>
+    <lastmod>2023-09-08T03:52:30-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://ai-doge.github.io/projects/</loc>
+    <lastmod>2023-09-08T03:52:30-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://ai-doge.github.io/project-types/</loc>
+    <lastmod>2023-09-08T03:52:30-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
@@ -23,6 +48,16 @@
     <priority>0.5</priority>
   </url><url>
     <loc>https://ai-doge.github.io/categories/llm/</loc>
+    <lastmod>2023-09-01T21:21:46-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://ai-doge.github.io/tags/mpsx/</loc>
+    <lastmod>2023-09-01T21:21:46-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://ai-doge.github.io/tags/onnx/</loc>
     <lastmod>2023-09-01T21:21:46-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -47,22 +82,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://ai-doge.github.io/project-types/ios/</loc>
-    <lastmod>2023-09-01T03:52:30-05:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
     <loc>https://ai-doge.github.io/project-types/llm/</loc>
-    <lastmod>2023-09-01T03:52:30-05:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://ai-doge.github.io/projects/</loc>
-    <lastmod>2023-09-01T03:52:30-05:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://ai-doge.github.io/project-types/</loc>
     <lastmod>2023-09-01T03:52:30-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

@@ -303,7 +303,7 @@
   <section class="page-header">
     <h1 class="page-header-title">Port the LLaMa Model on iOS</h1>
     <div class="post-list-meta">
-      <div class="post-list-dates">Sep 1, 2023&nbsp;&middot;&nbsp;0 min.</div>
+      <div class="post-list-dates">Sep 1, 2023&nbsp;&middot;&nbsp;5 min.</div>
       
       <div class="post-list-categories">
         
@@ -321,6 +321,10 @@
       
       <a class="term" href="https://ai-doge.github.io/tags/llama/">LLaMa</a></li>
       
+      <a class="term" href="https://ai-doge.github.io/tags/mpsx/">MPSX</a></li>
+      
+      <a class="term" href="https://ai-doge.github.io/tags/onnx/">ONNX</a></li>
+      
       
     </div>
   </section>
@@ -333,7 +337,34 @@
       <h2 class="toc-header">Table of Contents</h2>
       <span class="toc-drop-icon">&blacktriangledown;</span>
     </div>
-    <div id="js-toc-contents" class="toc-contents"><nav id="TableOfContents"></nav></div>
+    <div id="js-toc-contents" class="toc-contents"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction">Introduction</a></li>
+    <li><a href="#part-1-exporting-the-model-to-onnx-format">Part 1: Exporting the Model to ONNX Format</a>
+      <ul>
+        <li><a href="#the-challenge">The Challenge</a></li>
+        <li><a href="#our-solution">Our Solution</a></li>
+      </ul>
+    </li>
+    <li><a href="#part-1-exporting-the-model-to-onnx-format-1">Part 1: Exporting the Model to ONNX Format</a>
+      <ul>
+        <li><a href="#code-changes-for-onnx-export">Code Changes for ONNX Export</a></li>
+      </ul>
+    </li>
+    <li><a href="#part-2-exporting-to-onnx-format-post-pr">Part 2: Exporting to ONNX Format Post-PR</a>
+      <ul>
+        <li><a href="#the-onnx-export-code">The ONNX Export Code</a></li>
+      </ul>
+    </li>
+    <li><a href="#part-3-running-the-onnx-model-on-ios-devices">Part 3: Running the ONNX Model on iOS Devices</a>
+      <ul>
+        <li><a href="#utilizing-mpsx-library">Utilizing MPSX Library</a></li>
+        <li><a href="#enhancements-to-mpsx">Enhancements to MPSX</a></li>
+        <li><a href="#code-snippet-loading-and-running-the-onnx-model">Code Snippet: Loading and Running the ONNX Model</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
   </aside>
 
   <div class="single-post-contents">
@@ -345,13 +376,213 @@
 
 </div>
     <article class="markdown">
-        
+        <h1 id="running-baby-llama2-model-on-ios-with-illustrate-llama-app">Running Baby llama2 Model on iOS with Illustrate Llama App<a href="#running-baby-llama2-model-on-ios-with-illustrate-llama-app">
+    <svg role="img" aria-labelledby="running-baby-llama2-model-on-ios-with-illustrate-llama-app-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="running-baby-llama2-model-on-ios-with-illustrate-llama-app-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h1><h2 id="introduction">Introduction<a href="#introduction">
+    <svg role="img" aria-labelledby="introduction-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="introduction-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h2><p>In this blog post, we&rsquo;ll walk through the technical steps involved in running the Baby llama2 model from the <a href="https://github.com/karpathy/llama2.c" target="_blank" rel="noopener">llama2.c GitHub repository</a> on an iOS app called <a href="https://apps.apple.com/us/app/illustrate-llama/id6452017369" target="_blank" rel="noopener">Illustrate Llama</a>. We&rsquo;ll cover the process of exporting the model to ONNX format, integrating it into the iOS app, and the challenges we faced along the way.</p>
+<h2 id="part-1-exporting-the-model-to-onnx-format">Part 1: Exporting the Model to ONNX Format<a href="#part-1-exporting-the-model-to-onnx-format">
+    <svg role="img" aria-labelledby="part-1-exporting-the-model-to-onnx-format-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="part-1-exporting-the-model-to-onnx-format-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h2><h3 id="the-challenge">The Challenge<a href="#the-challenge">
+    <svg role="img" aria-labelledby="the-challenge-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="the-challenge-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>The first step in our journey was to export the pre-trained Baby llama2 model to ONNX format. However, we encountered a roadblock: the llama2.c project did not initially support ONNX export. The primary reason was that ONNX did not support the <code>Complex64</code> data type, which was used in the codebase.</p>
+<p>For more context, you can refer to the GitHub issue <a href="https://github.com/karpathy/llama2.c/issues/142" target="_blank" rel="noopener">here</a>.</p>
+<h3 id="our-solution">Our Solution<a href="#our-solution">
+    <svg role="img" aria-labelledby="our-solution-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="our-solution-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>To overcome this challenge, we submitted a Pull Request (<a href="https://github.com/karpathy/llama2.c/pull/103" target="_blank" rel="noopener">PR #103</a>) to the llama2.c repository. The core idea behind the PR was to decompose the operations involving complex numbers into separate operations for the real and imaginary parts.</p>
+<h2 id="part-1-exporting-the-model-to-onnx-format-1">Part 1: Exporting the Model to ONNX Format<a href="#part-1-exporting-the-model-to-onnx-format-1">
+    <svg role="img" aria-labelledby="part-1-exporting-the-model-to-onnx-format-1-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="part-1-exporting-the-model-to-onnx-format-1-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h2><h3 id="code-changes-for-onnx-export">Code Changes for ONNX Export<a href="#code-changes-for-onnx-export">
+    <svg role="img" aria-labelledby="code-changes-for-onnx-export-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="code-changes-for-onnx-export-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>To resolve the issue with the <code>Complex64</code> data type, we made several changes to the codebase. Below are some of the key modifications:</p>
+<h4 id="replacing-complex-numbers-with-real-and-imaginary-parts">Replacing Complex Numbers with Real and Imaginary Parts<a href="#replacing-complex-numbers-with-real-and-imaginary-parts">
+    <svg role="img" aria-labelledby="replacing-complex-numbers-with-real-and-imaginary-parts-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="replacing-complex-numbers-with-real-and-imaginary-parts-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h4><p>Originally, the code used complex numbers for certain calculations. We replaced these with separate real and imaginary parts.</p>
+
+
+  <span class="code-language">python</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#75715e"># Original code</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>freqs_cis <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>polar(torch<span style="color:#f92672">.</span>ones_like(freqs), freqs)  <span style="color:#75715e"># complex64</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#75715e"># Modified code</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>freqs_cos <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>cos(freqs)  <span style="color:#75715e"># real part</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>freqs_sin <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>sin(freqs)  <span style="color:#75715e"># imaginary part</span></span></span></code></pre></div>
+<h4 id="modifying-the-rotary-embedding-function">Modifying the Rotary Embedding Function<a href="#modifying-the-rotary-embedding-function">
+    <svg role="img" aria-labelledby="modifying-the-rotary-embedding-function-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="modifying-the-rotary-embedding-function-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h4><p>The <code>apply_rotary_emb</code> function was also modified to accommodate the changes.</p>
+
+
+  <span class="code-language">python</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#75715e"># Original code</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>xq_out <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>view_as_real(xq_ <span style="color:#f92672">*</span> freqs_cis)<span style="color:#f92672">.</span>flatten(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>xk_out <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>view_as_real(xk_ <span style="color:#f92672">*</span> freqs_cis)<span style="color:#f92672">.</span>flatten(<span style="color:#ae81ff">3</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span><span style="color:#75715e"># Modified code</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>xq_out_r <span style="color:#f92672">=</span> xq_r <span style="color:#f92672">*</span> freqs_cos <span style="color:#f92672">-</span> xq_i <span style="color:#f92672">*</span> freqs_sin
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span>xq_out_i <span style="color:#f92672">=</span> xq_r <span style="color:#f92672">*</span> freqs_sin <span style="color:#f92672">+</span> xq_i <span style="color:#f92672">*</span> freqs_cos
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span>xk_out_r <span style="color:#f92672">=</span> xk_r <span style="color:#f92672">*</span> freqs_cos <span style="color:#f92672">-</span> xk_i <span style="color:#f92672">*</span> freqs_sin
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">9</span><span>xk_out_i <span style="color:#f92672">=</span> xk_r <span style="color:#f92672">*</span> freqs_sin <span style="color:#f92672">+</span> xk_i <span style="color:#f92672">*</span> freqs_cos</span></span></code></pre></div>
+<h4 id="updating-the-forward-method">Updating the Forward Method<a href="#updating-the-forward-method">
+    <svg role="img" aria-labelledby="updating-the-forward-method-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="updating-the-forward-method-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h4><p>The forward method in various classes was updated to use the new real and imaginary parts.</p>
+
+
+  <span class="code-language">python</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#75715e"># Original code</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>h <span style="color:#f92672">=</span> layer(h, freqs_cis)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span><span style="color:#75715e"># Modified code</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>h <span style="color:#f92672">=</span> layer(h, freqs_cos, freqs_sin)</span></span></code></pre></div>
+<p>By making these changes, we were able to successfully export the Baby llama2 model to ONNX format without any issues related to the <code>Complex64</code> data type.</p>
+<h2 id="part-2-exporting-to-onnx-format-post-pr">Part 2: Exporting to ONNX Format Post-PR<a href="#part-2-exporting-to-onnx-format-post-pr">
+    <svg role="img" aria-labelledby="part-2-exporting-to-onnx-format-post-pr-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="part-2-exporting-to-onnx-format-post-pr-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h2><h3 id="the-onnx-export-code">The ONNX Export Code<a href="#the-onnx-export-code">
+    <svg role="img" aria-labelledby="the-onnx-export-code-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="the-onnx-export-code-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>After successfully merging our Pull Request, we were able to export the Baby llama2 model to ONNX format. Below is the Python code snippet that demonstrates how to perform the export:</p>
+
+
+  <span class="code-language">python</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>torch<span style="color:#f92672">.</span>onnx<span style="color:#f92672">.</span>export(model,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>                  torch<span style="color:#f92672">.</span>from_numpy(input),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>                  <span style="color:#e6db74">&#34;./model_128.onnx&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>                  verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>                  input_names<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;input&#34;</span>],
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>                  output_names<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;output&#34;</span>])</span></span></code></pre></div>
+<p>In this code snippet:</p>
+<ul>
+<li><code>model</code>: The pre-trained Baby llama2 model.</li>
+<li><code>torch.from_numpy(input)</code>: The input tensor converted from a NumPy array.</li>
+<li><code>./model_128.onnx</code>: The path where the exported ONNX model will be saved.</li>
+<li><code>verbose=True</code>: Enables verbose output to understand the export process.</li>
+<li><code>input_names</code> and <code>output_names</code>: Specifies the names for the input and output nodes in the ONNX graph.</li>
+</ul>
+<p>By running this code, the model is exported to an ONNX file named <code>model_128.onnx</code>, which can then be integrated into our iOS application.</p>
+<h2 id="part-3-running-the-onnx-model-on-ios-devices">Part 3: Running the ONNX Model on iOS Devices<a href="#part-3-running-the-onnx-model-on-ios-devices">
+    <svg role="img" aria-labelledby="part-3-running-the-onnx-model-on-ios-devices-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="part-3-running-the-onnx-model-on-ios-devices-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h2><h3 id="utilizing-mpsx-library">Utilizing MPSX Library<a href="#utilizing-mpsx-library">
+    <svg role="img" aria-labelledby="utilizing-mpsx-library-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="utilizing-mpsx-library-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>To run the ONNX model on iOS, we leveraged a closed-source modification of the <a href="https://github.com/prisma-ai/MPSX" target="_blank" rel="noopener">MPSX library</a>. MPSX is an excellent open-source project that allows you to load ONNX models on iOS using Swift and perform inference in a straightforward manner.</p>
+<h3 id="enhancements-to-mpsx">Enhancements to MPSX<a href="#enhancements-to-mpsx">
+    <svg role="img" aria-labelledby="enhancements-to-mpsx-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="enhancements-to-mpsx-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>We made extensive enhancements to the MPSX library to support a more comprehensive set of ONNX operators and offer a more flexible way to invoke the model. These modifications enabled us to integrate the ONNX model seamlessly into our iOS application.</p>
+<h3 id="code-snippet-loading-and-running-the-onnx-model">Code Snippet: Loading and Running the ONNX Model<a href="#code-snippet-loading-and-running-the-onnx-model">
+    <svg role="img" aria-labelledby="code-snippet-loading-and-running-the-onnx-model-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="code-snippet-loading-and-running-the-onnx-model-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>Below is a Swift code snippet that demonstrates how to load the ONNX model and perform inference:</p>
+
+
+  <span class="code-language">swift</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">testLlama2_fp32</span>() {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>    <span style="color:#66d9ef">let</span> path = <span style="color:#e6db74">&#34;model_path&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>    <span style="color:#66d9ef">let</span> onnxModel = <span style="color:#66d9ef">try</span>! OnnxModel(path: path <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/llama2.sim.fp16.onnx&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    <span style="color:#66d9ef">let</span> inputConfigs = [<span style="color:#e6db74">&#34;input&#34;</span>: OnnxGraphInputConfig(shape: [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">103</span>], type: .int64)]
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    <span style="color:#66d9ef">let</span> outputConfigs = [<span style="color:#e6db74">&#34;output&#34;</span>: OnnxGraphOutputConfig()]
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#66d9ef">let</span> globalConfig = OnnxGraphGlobalConfig(floatPrecision: .float32)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    <span style="color:#66d9ef">let</span> graphConfig = OnnxGraphConfig(inputConfigs: inputConfigs,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>                                      outputConfigs: outputConfigs,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>                                      globalConfig: globalConfig,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>                                      gradConfig: <span style="color:#66d9ef">nil</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>    <span style="color:#66d9ef">let</span> graph = <span style="color:#66d9ef">try</span>! OnnxGraphBuilder().build(onnxModel: onnxModel, config: graphConfig)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    <span style="color:#66d9ef">let</span> input = Tensor.loadFromNpy(path: path <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;/input.npy&#34;</span>)<span style="color:#f92672">!</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>  
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    <span style="color:#66d9ef">let</span> output = graph.forward(inputs: [<span style="color:#e6db74">&#34;input&#34;</span>: input], outputs: [<span style="color:#e6db74">&#34;output&#34;</span>])[<span style="color:#e6db74">&#34;output&#34;</span>]<span style="color:#f92672">!</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>}</span></span></code></pre></div>
+<p>In this code snippet:</p>
+<ul>
+<li><code>OnnxModel</code>: Class for loading the ONNX model.</li>
+<li><code>OnnxGraphInputConfig</code> and <code>OnnxGraphOutputConfig</code>: Classes for configuring the input and output shapes and types.</li>
+<li><code>OnnxGraphGlobalConfig</code>: Class for setting global configurations like float precision.</li>
+<li><code>OnnxGraphBuilder</code>: Class for building the graph for inference.</li>
+<li><code>Tensor.loadFromNpy</code>: Method for loading input data from an NPY file.</li>
+</ul>
+<p>By running this code, you can perform inference using the ONNX model on your iOS device.</p>
+
     </article>
     <aside>
       <div class="single-terms">
         
           
           <a class="term" href="https://ai-doge.github.io/tags/llama/">LLaMa</a></li>
+          
+          <a class="term" href="https://ai-doge.github.io/tags/mpsx/">MPSX</a></li>
+          
+          <a class="term" href="https://ai-doge.github.io/tags/onnx/">ONNX</a></li>
           
         
       </div>
