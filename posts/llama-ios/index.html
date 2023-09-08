@@ -303,7 +303,7 @@
   <section class="page-header">
     <h1 class="page-header-title">Port the LLaMa Model on iOS</h1>
     <div class="post-list-meta">
-      <div class="post-list-dates">Sep 1, 2023&nbsp;&middot;&nbsp;5 min.</div>
+      <div class="post-list-dates">Sep 1, 2023&nbsp;&middot;&nbsp;4 min.</div>
       
       <div class="post-list-categories">
         
@@ -344,10 +344,6 @@
       <ul>
         <li><a href="#the-challenge">The Challenge</a></li>
         <li><a href="#our-solution">Our Solution</a></li>
-      </ul>
-    </li>
-    <li><a href="#part-1-exporting-the-model-to-onnx-format-1">Part 1: Exporting the Model to ONNX Format</a>
-      <ul>
         <li><a href="#code-changes-for-onnx-export">Code Changes for ONNX Export</a></li>
       </ul>
     </li>
@@ -415,14 +411,7 @@
     </svg>
   </a>
 </h3><p>To overcome this challenge, we submitted a Pull Request (<a href="https://github.com/karpathy/llama2.c/pull/103" target="_blank" rel="noopener">PR #103</a>) to the llama2.c repository. The core idea behind the PR was to decompose the operations involving complex numbers into separate operations for the real and imaginary parts.</p>
-<h2 id="part-1-exporting-the-model-to-onnx-format-1">Part 1: Exporting the Model to ONNX Format<a href="#part-1-exporting-the-model-to-onnx-format-1">
-    <svg role="img" aria-labelledby="part-1-exporting-the-model-to-onnx-format-1-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
-      <title id="part-1-exporting-the-model-to-onnx-format-1-IconTitle">Link to this heading</title>
-      <path d="M0 0h24v24H0z" fill="none"></path>
-      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
-    </svg>
-  </a>
-</h2><h3 id="code-changes-for-onnx-export">Code Changes for ONNX Export<a href="#code-changes-for-onnx-export">
+<h3 id="code-changes-for-onnx-export">Code Changes for ONNX Export<a href="#code-changes-for-onnx-export">
     <svg role="img" aria-labelledby="code-changes-for-onnx-export-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
       <title id="code-changes-for-onnx-export-IconTitle">Link to this heading</title>
       <path d="M0 0h24v24H0z" fill="none"></path>
