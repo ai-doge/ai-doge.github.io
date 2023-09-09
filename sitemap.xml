@@ -2,22 +2,17 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://ai-doge.github.io/</loc>
-    <lastmod>2023-09-09T14:39:41+08:00</lastmod>
+    <loc>https://ai-doge.github.io/projects/ai_deep_dream/</loc>
+    <lastmod>2023-09-08T03:52:30-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
-    <loc>https://ai-doge.github.io/projects/image_gan/</loc>
-    <lastmod>2023-09-09T14:39:41+08:00</lastmod>
+    <loc>https://ai-doge.github.io/</loc>
+    <lastmod>2023-09-08T03:52:30-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://ai-doge.github.io/projects/</loc>
-    <lastmod>2023-09-09T14:39:41+08:00</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url><url>
-    <loc>https://ai-doge.github.io/projects/ai_deep_dream/</loc>
     <lastmod>2023-09-08T03:52:30-05:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
@@ -74,6 +69,11 @@
   </url><url>
     <loc>https://ai-doge.github.io/projects/segment_anything/</loc>
     <lastmod>2023-03-01T03:52:30-05:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://ai-doge.github.io/projects/image_gan/</loc>
+    <lastmod>2023-01-01T14:39:41+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
