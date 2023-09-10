@@ -16,5 +16,14 @@
       <description>How to Port the LLaMa Model to Run on iOS Devices</description>
     </item>
     
+    <item>
+      <title>Implementing ImageGAN</title>
+      <link>https://ai-doge.github.io/posts/port_image_gan/</link>
+      <pubDate>Thu, 10 Aug 2023 11:43:24 +0800</pubDate>
+      
+      <guid>https://ai-doge.github.io/posts/port_image_gan/</guid>
+      <description>How to train a projected gan on landscapes/ clouds dataset, then port it on iPhone.</description>
+    </item>
+    
   </channel>
 </rss>

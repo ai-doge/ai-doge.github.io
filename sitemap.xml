@@ -67,6 +67,11 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://ai-doge.github.io/posts/port_image_gan/</loc>
+    <lastmod>2023-08-10T11:43:24+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://ai-doge.github.io/projects/segment_anything/</loc>
     <lastmod>2023-03-01T03:52:30-05:00</lastmod>
     <changefreq>monthly</changefreq>
