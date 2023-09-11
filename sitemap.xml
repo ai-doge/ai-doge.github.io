@@ -67,7 +67,32 @@
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://ai-doge.github.io/categories/colab/</loc>
+    <lastmod>2023-08-10T11:43:24+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://ai-doge.github.io/tags/colab-training/</loc>
+    <lastmod>2023-08-10T11:43:24+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://ai-doge.github.io/tags/image-gan/</loc>
+    <lastmod>2023-08-10T11:43:24+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://ai-doge.github.io/categories/image-gan/</loc>
+    <lastmod>2023-08-10T11:43:24+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://ai-doge.github.io/posts/port_image_gan/</loc>
+    <lastmod>2023-08-10T11:43:24+08:00</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://ai-doge.github.io/tags/kmeans-weight-quant/</loc>
     <lastmod>2023-08-10T11:43:24+08:00</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>

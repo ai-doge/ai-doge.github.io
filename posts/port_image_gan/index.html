@@ -38,7 +38,7 @@
     <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
   
 
-<title>Port_image_gan</title>
+<title>Implementing ImageGAN</title>
 
 
 <meta name="author" content="ai-doge">
@@ -47,7 +47,7 @@
 <link rel="canonical" href="https://ai-doge.github.io/posts/port_image_gan/">
 <meta property="og:locale" content="en_US">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Port_image_gan">
+<meta property="og:title" content="Implementing ImageGAN">
 <meta property="og:description" content="How to train a projected gan on landscapes/ clouds dataset, then port it on iPhone.">
 <meta property="og:url" content="https://ai-doge.github.io/posts/port_image_gan/">
 <meta property="article:published_time" content="2023-08-10T11:43:24+08:00">
@@ -67,7 +67,7 @@
 
   <meta name="twitter:creator" content="aidogeshow">
 
-<meta name="twitter:title" content="Port_image_gan">
+<meta name="twitter:title" content="Implementing ImageGAN">
 <meta name="twitter:description" content="How to train a projected gan on landscapes/ clouds dataset, then port it on iPhone.">
 
 
@@ -114,7 +114,7 @@
       "@type": "WebPage",
       "@id": "https://ai-doge.github.io/posts/port_image_gan/",
       "url": "https://ai-doge.github.io/posts/port_image_gan/",
-      "name": "Implementing ImageGAN",
+      "name": "Implementing ImageGAN From Data Collection to Model Compression",
       "description": "How to train a projected gan on landscapes/ clouds dataset, then port it on iPhone.",
       "isPartOf": {
         "@id": "https://ai-doge.github.io/#/schema/website/1"
@@ -171,7 +171,7 @@
         {
           "@type": "Article",
           "@id": "https://ai-doge.github.io/#/schema/article/1",
-          "headline": "Implementing ImageGAN",
+          "headline": "Implementing ImageGAN From Data Collection to Model Compression",
           "description": "How to train a projected gan on landscapes/ clouds dataset, then port it on iPhone.",
           "isPartOf": {
             "@id": "https://ai-doge.github.io/posts/port_image_gan/"
@@ -200,7 +200,7 @@
           "@id": "https://ai-doge.github.io/posts/port_image_gan/#/schema/image/2",
           "url": "https://ai-doge.github.io/images/ai-doge.jpg",
           "contentUrl": "https://ai-doge.github.io/images/ai-doge.jpg",
-          "caption": "Implementing ImageGAN"
+          "caption": "Implementing ImageGAN From Data Collection to Model Compression"
         }
       ]
     }
@@ -268,14 +268,30 @@
 </header><main class="section">
 <div class="container">
   <section class="page-header">
-    <h1 class="page-header-title">Implementing ImageGAN</h1>
+    <h1 class="page-header-title">Implementing ImageGAN From Data Collection to Model Compression</h1>
     <div class="post-list-meta">
-      <div class="post-list-dates">Aug 10, 2023&nbsp;&middot;&nbsp;3 min.</div>
+      <div class="post-list-dates">Aug 10, 2023&nbsp;&middot;&nbsp;5 min.</div>
+      
+      <div class="post-list-categories">
+        
+          <a href="https://ai-doge.github.io/categories/image-gan/">Image GAN</a>
+        
+          <a href="https://ai-doge.github.io/categories/colab/">Colab</a>
+        
+      </div>
       
       
     </div>
     <p class="page-header-desc">How to train a projected gan on landscapes/ clouds dataset, then port it on iPhone.</p>
     <div class="single-terms">
+      
+      
+      <a class="term" href="https://ai-doge.github.io/tags/image-gan/">Image GAN</a></li>
+      
+      <a class="term" href="https://ai-doge.github.io/tags/colab-training/">Colab Training</a></li>
+      
+      <a class="term" href="https://ai-doge.github.io/tags/kmeans-weight-quant/">KMeans Weight Quant</a></li>
+      
       
     </div>
   </section>
@@ -291,16 +307,23 @@
     <div id="js-toc-contents" class="toc-contents"><nav id="TableOfContents">
   <ul>
     <li><a href="#introduction">Introduction</a></li>
-    <li><a href="#part-1-preparing-training-data">Part 1: Preparing Training Data</a>
+    <li><a href="#preparing-training-data">Preparing Training Data</a>
       <ul>
         <li><a href="#data-collection-landscapes">Data Collection: Landscapes</a></li>
         <li><a href="#data-preprocessing">Data Preprocessing</a></li>
       </ul>
     </li>
-    <li><a href="#part-2-training-the-projected-gan-model">Part 2: Training the Projected GAN Model</a>
+    <li><a href="#training-the-projected-gan-model">Training the Projected GAN Model</a>
       <ul>
         <li><a href="#choosing-an-open-source-project">Choosing an Open-Source Project</a></li>
         <li><a href="#model-customization-for-mobile-deployment">Model Customization for Mobile Deployment</a></li>
+      </ul>
+    </li>
+    <li><a href="#exporting-the-trained-model-to-onnx-and-optimization">Exporting the Trained Model to ONNX and Optimization</a>
+      <ul>
+        <li><a href="#exporting-to-onnx-format">Exporting to ONNX Format</a></li>
+        <li><a href="#model-simplification-using-onnxsim">Model Simplification: Using onnxsim</a></li>
+        <li><a href="#model-compression-quantization">Model Compression: Quantization</a></li>
       </ul>
     </li>
     <li><a href="#conclusion">Conclusion</a></li>
@@ -317,14 +340,7 @@
 
 </div>
     <article class="markdown">
-        <h1 id="implementing-imagegan-a-journey-from-data-collection-to-app-deployment">Implementing ImageGAN: A Journey from Data Collection to App Deployment<a href="#implementing-imagegan-a-journey-from-data-collection-to-app-deployment">
-    <svg role="img" aria-labelledby="implementing-imagegan-a-journey-from-data-collection-to-app-deployment-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
-      <title id="implementing-imagegan-a-journey-from-data-collection-to-app-deployment-IconTitle">Link to this heading</title>
-      <path d="M0 0h24v24H0z" fill="none"></path>
-      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
-    </svg>
-  </a>
-</h1><h2 id="introduction">Introduction<a href="#introduction">
+        <h2 id="introduction">Introduction<a href="#introduction">
     <svg role="img" aria-labelledby="introduction-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
       <title id="introduction-IconTitle">Link to this heading</title>
       <path d="M0 0h24v24H0z" fill="none"></path>
@@ -338,9 +354,9 @@
 <li><strong>AI Masterpieces</strong>: Witness artistry as AI channels the essence of legendary painters to create new masterworks.</li>
 </ul>
 <p>For those interested in the technical aspects, this blog post will walk you through the process of implementing ImageGAN, focusing on data preparation and model training.</p>
-<h2 id="part-1-preparing-training-data">Part 1: Preparing Training Data<a href="#part-1-preparing-training-data">
-    <svg role="img" aria-labelledby="part-1-preparing-training-data-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
-      <title id="part-1-preparing-training-data-IconTitle">Link to this heading</title>
+<h2 id="preparing-training-data">Preparing Training Data<a href="#preparing-training-data">
+    <svg role="img" aria-labelledby="preparing-training-data-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="preparing-training-data-IconTitle">Link to this heading</title>
       <path d="M0 0h24v24H0z" fill="none"></path>
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg>
@@ -361,9 +377,9 @@
     </svg>
   </a>
 </h3><p>The collected images were preprocessed to fit the requirements of GAN training. Specifically, we resized the images to a uniform 512x512 pixel resolution. This step is crucial for the stability and effectiveness of the GAN model.</p>
-<h2 id="part-2-training-the-projected-gan-model">Part 2: Training the Projected GAN Model<a href="#part-2-training-the-projected-gan-model">
-    <svg role="img" aria-labelledby="part-2-training-the-projected-gan-model-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
-      <title id="part-2-training-the-projected-gan-model-IconTitle">Link to this heading</title>
+<h2 id="training-the-projected-gan-model">Training the Projected GAN Model<a href="#training-the-projected-gan-model">
+    <svg role="img" aria-labelledby="training-the-projected-gan-model-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="training-the-projected-gan-model-IconTitle">Link to this heading</title>
       <path d="M0 0h24v24H0z" fill="none"></path>
       <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
     </svg>
@@ -402,6 +418,88 @@
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>        self<span style="color:#f92672">.</span>z_dim <span style="color:#f92672">=</span> z_dim
 </span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>        <span style="color:#75715e"># ... (rest of the code remains the same)</span></span></span></code></pre></div>
 <p>By making these adjustments, we were able to train a model that not only converges quickly but is also optimized for mobile deployment.</p>
+<h2 id="exporting-the-trained-model-to-onnx-and-optimization">Exporting the Trained Model to ONNX and Optimization<a href="#exporting-the-trained-model-to-onnx-and-optimization">
+    <svg role="img" aria-labelledby="exporting-the-trained-model-to-onnx-and-optimization-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="exporting-the-trained-model-to-onnx-and-optimization-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h2><p>After the model training is complete, the next step is to export the model to ONNX (Open Neural Network Exchange) format so that it can run on different platforms and environments. This section will detail how to go about this process, with special emphasis on two key steps: model simplification and model compression.</p>
+<h3 id="exporting-to-onnx-format">Exporting to ONNX Format<a href="#exporting-to-onnx-format">
+    <svg role="img" aria-labelledby="exporting-to-onnx-format-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="exporting-to-onnx-format-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>First, we use PyTorch&rsquo;s <code>torch.onnx.export</code> function to export the trained GAN model to ONNX format. Let&rsquo;s assume the exported model file is named <code>gan.onnx</code>.</p>
+
+
+  <span class="code-language">python</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#f92672">import</span> torch.onnx
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#f92672">import</span> torchvision.models <span style="color:#66d9ef">as</span> models
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#75715e">### Initialize the model and input</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>model <span style="color:#f92672">=</span> YourTrainedGANModel()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>x <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>randn(batch_size, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">512</span>, <span style="color:#ae81ff">512</span>, requires_grad<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>torch_out <span style="color:#f92672">=</span> model(x)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span><span style="color:#75715e">### Export the model</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>torch<span style="color:#f92672">.</span>onnx<span style="color:#f92672">.</span>export(model,                     <span style="color:#75715e"># model being run</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>                  x,                         <span style="color:#75715e"># model input</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>                  <span style="color:#e6db74">&#34;gan.onnx&#34;</span>,                <span style="color:#75715e"># where to save the model</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>                  export_params<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)        <span style="color:#75715e"># store the trained parameter weights inside the model file</span></span></span></code></pre></div>
+<h3 id="model-simplification-using-onnxsim">Model Simplification: Using onnxsim<a href="#model-simplification-using-onnxsim">
+    <svg role="img" aria-labelledby="model-simplification-using-onnxsim-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="model-simplification-using-onnxsim-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>Once the model is exported, we use the <code>onnxsim</code> tool to simplify the model. This step usually removes many redundant layers, thereby accelerating model inference and reducing the layers that need to be supported on the device.</p>
+
+
+  <span class="code-language">bash</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>pip install onnxsim
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>onnxsim gan.onnx gan.sim.onnx</span></span></code></pre></div>
+<h3 id="model-compression-quantization">Model Compression: Quantization<a href="#model-compression-quantization">
+    <svg role="img" aria-labelledby="model-compression-quantization-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="model-compression-quantization-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><h4 id="using-int8-precision">Using INT8 Precision<a href="#using-int8-precision">
+    <svg role="img" aria-labelledby="using-int8-precision-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="using-int8-precision-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h4><p>The original FP32 model size is close to 100MB, which is too large for a device-side application. Therefore, we plan to use INT8 precision to compress the model, which usually reduces the model size to a quarter of the original.</p>
+<h4 id="k-means-quantization">K-means Quantization<a href="#k-means-quantization">
+    <svg role="img" aria-labelledby="k-means-quantization-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="k-means-quantization-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h4><p>In GAN models, traditional quantization methods like scale symmetric quantization or scale zeroPoint asymmetric quantization may lead to significant model accuracy loss. To address this, we use the K-means algorithm for quantization.</p>
+<p>Specifically, for each well-trained weight matrix in the network, we use the K-means algorithm to cluster its values into 256 classes. Then, we record the class centers and the class IDs corresponding to each weight.</p>
+<p>This K-means quantization method has been tested to almost completely retain the original network&rsquo;s generated image quality. The Cosine Similarity with the original FP32 model&rsquo;s output results is above 0.999.</p>
+
+
+  <span class="code-language">python</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#75715e"># K-means Quantization Code Example (Pseudocode)</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#f92672">from</span> sklearn.cluster <span style="color:#f92672">import</span> KMeans
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">kmeans_quantize</span>(weight_matrix):
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>    original_shape <span style="color:#f92672">=</span> weight_matrix<span style="color:#f92672">.</span>shape
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    weight_matrix <span style="color:#f92672">=</span> weight_matrix<span style="color:#f92672">.</span>reshape(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    kmeans <span style="color:#f92672">=</span> KMeans(n_clusters<span style="color:#f92672">=</span><span style="color:#ae81ff">256</span>, random_state<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>)<span style="color:#f92672">.</span>fit(weight_matrix)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>    centers <span style="color:#f92672">=</span> kmeans<span style="color:#f92672">.</span>cluster_centers_
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>    labels <span style="color:#f92672">=</span> kmeans<span style="color:#f92672">.</span>labels_
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>    <span style="color:#75715e"># Replace the original weights with the class centers</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>    quantized_matrix <span style="color:#f92672">=</span> centers[labels]<span style="color:#f92672">.</span>reshape(original_shape)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>    <span style="color:#66d9ef">return</span> quantized_matrix, centers, labels</span></span></code></pre></div>
 <h2 id="conclusion">Conclusion<a href="#conclusion">
     <svg role="img" aria-labelledby="conclusion-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
       <title id="conclusion-IconTitle">Link to this heading</title>
@@ -415,6 +513,14 @@
     <aside>
       <div class="single-terms">
         
+          
+          <a class="term" href="https://ai-doge.github.io/tags/image-gan/">Image GAN</a></li>
+          
+          <a class="term" href="https://ai-doge.github.io/tags/colab-training/">Colab Training</a></li>
+          
+          <a class="term" href="https://ai-doge.github.io/tags/kmeans-weight-quant/">KMeans Weight Quant</a></li>
+          
+        
       </div>
       
   
@@ -427,7 +533,7 @@
       <ul class="social-icons--share">
         
         
-        <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fai-doge.github.io%2fposts%2fport_image_gan%2f&amp;text=Implementing%20ImageGAN" target="_blank" rel="noopener" aria-label="Share on Twitter" class="social-btn twitter">
+        <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fai-doge.github.io%2fposts%2fport_image_gan%2f&amp;text=Implementing%20ImageGAN%20From%20Data%20Collection%20to%20Model%20Compression" target="_blank" rel="noopener" aria-label="Share on Twitter" class="social-btn twitter">
           <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-twitter" width="24" height="24" viewBox="0 0 384 312" fill="var(--color-primary)"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg></li>
         </a>
         
@@ -445,13 +551,13 @@
         
         
         
-        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fai-doge.github.io%2fposts%2fport_image_gan%2f&amp;source=https%3a%2f%2fai-doge.github.io%2fposts%2fport_image_gan%2f&amp;title=Implementing%20ImageGAN&amp;summary=Implementing%20ImageGAN" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fai-doge.github.io%2fposts%2fport_image_gan%2f&amp;source=https%3a%2f%2fai-doge.github.io%2fposts%2fport_image_gan%2f&amp;title=Implementing%20ImageGAN%20From%20Data%20Collection%20to%20Model%20Compression&amp;summary=Implementing%20ImageGAN%20From%20Data%20Collection%20to%20Model%20Compression" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
           <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg></li>
         </a>
         
         
         
-        <a href="mailto:?subject=ai-doge%20-%20Implementing%20ImageGAN.&amp;body=Implementing%20ImageGAN%2c%20by%20ai-doge%0aHow%20to%20train%20a%20projected%20gan%20on%20landscapes%2f%20clouds%20dataset%2c%20then%20port%20it%20on%20iPhone.%0a%0ahttps%3a%2f%2fai-doge.github.io%2fposts%2fport_image_gan%2f%0a" target="_blank" class="social-btn email">
+        <a href="mailto:?subject=ai-doge%20-%20Implementing%20ImageGAN%20From%20Data%20Collection%20to%20Model%20Compression.&amp;body=Implementing%20ImageGAN%20From%20Data%20Collection%20to%20Model%20Compression%2c%20by%20ai-doge%0aHow%20to%20train%20a%20projected%20gan%20on%20landscapes%2f%20clouds%20dataset%2c%20then%20port%20it%20on%20iPhone.%0a%0ahttps%3a%2f%2fai-doge.github.io%2fposts%2fport_image_gan%2f%0a" target="_blank" class="social-btn email">
           <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg></li>
         </a>
       </ul>
