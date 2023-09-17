@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en-us"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+
+
+
+
+
+
+  
+  
+  
+    
+    
+  
+
+
+
+
+
+  
+
+
+
+  
+  
+
+<link rel="stylesheet" href="https://ai-doge.github.io/main.min.css" />
+
+
+  
+<meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+    <meta name="bingbot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+  
+
+<title>Segment Anything</title>
+
+
+<meta name="author" content="ai-doge">
+
+<meta name="description" content="Porting the Segment Anything Open-Source Image Segmentation Algorithm to iOS">
+<link rel="canonical" href="https://ai-doge.github.io/posts/segment_anything/">
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Segment Anything">
+<meta property="og:description" content="Porting the Segment Anything Open-Source Image Segmentation Algorithm to iOS">
+<meta property="og:url" content="https://ai-doge.github.io/posts/segment_anything/">
+<meta property="article:published_time" content="2023-09-17T10:57:29+08:00">
+  <meta property="article:modified_time" content="2023-09-17T10:57:29+08:00">
+  
+
+
+  <meta name="og:image" content="https://ai-doge.github.io/images/ai-doge.jpg"/>
+
+
+
+
+
+
+  <meta name="twitter:site" content="aidogeshow">
+
+
+  <meta name="twitter:creator" content="aidogeshow">
+
+<meta name="twitter:title" content="Segment Anything">
+<meta name="twitter:description" content="Porting the Segment Anything Open-Source Image Segmentation Algorithm to iOS">
+
+
+
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:image" content="https://ai-doge.github.io/images/ai-doge.jpg"/>
+
+
+
+
+
+  
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": "https://ai-doge.github.io/#/schema/person/1",
+      "name": "Ai Doge",
+      "url": "https://ai-doge.github.io/",
+      "image": {
+        "@type": "ImageObject",
+        "@id": "https://ai-doge.github.io/#/schema/image/1",
+        "url": "https://ai-doge.github.io/images/ai-doge.jpg",
+        "width": 453 ,
+        "height": 455 ,
+        "caption": "Ai Doge"
+      }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://ai-doge.github.io/#/schema/website/1",
+      "url": "https://ai-doge.github.io/",
+      "name": "ai-doge",
+      "description": "Ai-Doge's Blog",
+      "publisher": {
+        "@id": "https://ai-doge.github.io/#/schema/person/1"
+      }
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://ai-doge.github.io/posts/segment_anything/",
+      "url": "https://ai-doge.github.io/posts/segment_anything/",
+      "name": "Porting the Segment Anything Model to iOS",
+      "description": "Porting the Segment Anything Open-Source Image Segmentation Algorithm to iOS",
+      "isPartOf": {
+        "@id": "https://ai-doge.github.io/#/schema/website/1"
+      },
+      "about": {
+        "@id": "https://ai-doge.github.io/#/schema/person/1"
+      },
+      "datePublished": "2023-09-17T10:57:29+08:00",
+      "dateModified": "2023-09-17T10:57:29+08:00",
+      "breadcrumb": {
+        "@id": "https://ai-doge.github.io/posts/segment_anything/#/schema/breadcrumb/1"
+      },
+      "primaryImageOfPage": {
+        "@id": "https://ai-doge.github.io/posts/segment_anything/#/schema/image/2"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": [{
+        "@type": "ReadAction", "target": ["https://ai-doge.github.io/posts/segment_anything/"]
+      }]
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ai-doge.github.io/posts/segment_anything/#/schema/breadcrumb/1",
+      "name": "Breadcrumbs",
+      "itemListElement": [{
+        "@type": "ListItem",
+        "position":  1 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://ai-doge.github.io/",
+          "url": "https://ai-doge.github.io/",
+          "name": "Home"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  2 ,
+        "item": {
+          "@type": "WebPage",
+          "@id": "https://ai-doge.github.io/posts/",
+          "url": "https://ai-doge.github.io/posts/",
+          "name": "Posts"
+          }
+        },{
+        "@type": "ListItem",
+        "position":  3 ,
+        "item": {
+          "@id": "https://ai-doge.github.io/posts/segment_anything/"
+          }
+        }]
+    },
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Article",
+          "@id": "https://ai-doge.github.io/#/schema/article/1",
+          "headline": "Porting the Segment Anything Model to iOS",
+          "description": "Porting the Segment Anything Open-Source Image Segmentation Algorithm to iOS",
+          "isPartOf": {
+            "@id": "https://ai-doge.github.io/posts/segment_anything/"
+          },
+          "mainEntityOfPage": {
+            "@id": "https://ai-doge.github.io/posts/segment_anything/"
+          },
+          "datePublished": "2023-09-17T10:57:29+08:00",
+          "dateModified": "2023-09-17T10:57:29+08:00",
+          "author": {
+            "@id": "https://ai-doge.github.io/#/schema/person/1"
+          },          
+          "publisher": {
+            "@id": "https://ai-doge.github.io/#/schema/person/1"
+          },
+          "image": {
+            "@id": "https://ai-doge.github.io/posts/segment_anything/#/schema/image/2"
+          }
+        }
+      ]
+    },{
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "ImageObject",
+          "@id": "https://ai-doge.github.io/posts/segment_anything/#/schema/image/2",
+          "url": "https://ai-doge.github.io/images/ai-doge.jpg",
+          "contentUrl": "https://ai-doge.github.io/images/ai-doge.jpg",
+          "caption": "Porting the Segment Anything Model to iOS"
+        }
+      ]
+    }
+  ]
+}
+</script>
+  
+
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/site.webmanifest">
+
+  
+
+</head><body>
+    <header class="container">
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WMMNNH5CCF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WMMNNH5CCF');
+</script>
+
+  <nav class="main-nav" id="js-navbar">
+    <a class="logo" href="https://ai-doge.github.io/">ai-doge</a>
+    <ul class="menu" id="js-menu">
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Products<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/projects/" class="menu-link">Products</a>                  
+            </li>
+          
+            <li class="menu-item">
+              <a href="/about/" class="menu-link">About</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      
+      <li class="menu-item">
+        <span class="menu-link">Posts<span class="drop-icon">▾</span></span>
+        <ul class="sub-menu">
+          
+            <li class="menu-item">
+              <a href="/posts/" class="menu-link">All Posts</a>                  
+            </li>
+          
+        </ul>
+      </li>
+      
+      
+      <li class="menu-item--align">
+        <div class="switch">
+          <input class="switch-input" type="checkbox" id="themeSwitch">
+          <label aria-hidden="true" class="switch-label" for="themeSwitch">On</label>
+          <div aria-hidden="true" class="switch-marker"></div>
+        </div>
+      </li>
+    </ul>
+    <span class="nav-toggle" id="js-navbar-toggle">
+      <svg xmlns="http://www.w3.org/2000/svg" id="Outline" viewBox="0 0 24 24" width="30" height="30" fill="var(--color-contrast-high)"><rect y="11" width="24" height="2" rx="1"/><rect y="4" width="24" height="2" rx="1"/><rect y="18" width="24" height="2" rx="1"/></svg>
+    </span>
+  </nav>
+</header><main class="section">
+<div class="container">
+  <section class="page-header">
+    <h1 class="page-header-title">Porting the Segment Anything Model to iOS</h1>
+    <div class="post-list-meta">
+      <div class="post-list-dates">Sep 17, 2023&nbsp;&middot;&nbsp;4 min.</div>
+      
+      <div class="post-list-categories">
+        
+          <a href="https://ai-doge.github.io/categories/segmentation/">Segmentation</a>
+        
+      </div>
+      
+      
+    </div>
+    <p class="page-header-desc">Porting the Segment Anything Model to an iOS App</p>
+    <div class="single-terms">
+      
+      
+      <a class="term" href="https://ai-doge.github.io/tags/sam/">SAM</a></li>
+      
+      <a class="term" href="https://ai-doge.github.io/tags/vision/">Vision</a></li>
+      
+      
+    </div>
+  </section>
+</div>
+<div class="single-container-post">
+  
+
+  <aside class="toc">
+    <div id="js-toc-toggle">
+      <h2 class="toc-header">Table of Contents</h2>
+      <span class="toc-drop-icon">&blacktriangledown;</span>
+    </div>
+    <div id="js-toc-contents" class="toc-contents"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#introduction-to-the-segment-anything-ios-app">Introduction to the Segment Anything iOS App</a></li>
+    <li><a href="#exporting-to-onnx-format">Exporting to Onnx Format</a>
+      <ul>
+        <li><a href="#export-image-encoder-to-onnx">Export Image Encoder to Onnx</a></li>
+        <li><a href="#12-export-mask-decoder-to-onnx">1.2 Export Mask Decoder to Onnx</a></li>
+      </ul>
+    </li>
+    <li><a href="#running-the-onnx-model-on-ios-devices">Running the ONNX Model on iOS Devices</a>
+      <ul>
+        <li><a href="#utilizing-mpsx-library">Utilizing MPSX Library</a></li>
+        <li><a href="#enhancements-to-mpsx">Enhancements to MPSX</a></li>
+        <li><a href="#code-snippet-loading-and-running-the-onnx-model">Code Snippet: Loading and Running the ONNX Model</a></li>
+      </ul>
+    </li>
+    <li><a href="#interesting-tidbits">Interesting Tidbits</a></li>
+  </ul>
+</nav></div>
+  </aside>
+
+  <div class="single-post-contents">
+    <div class="single-feature-img">
+
+
+
+  
+
+</div>
+    <article class="markdown">
+        <h2 id="introduction-to-the-segment-anything-ios-app">Introduction to the Segment Anything iOS App<a href="#introduction-to-the-segment-anything-ios-app">
+    <svg role="img" aria-labelledby="introduction-to-the-segment-anything-ios-app-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="introduction-to-the-segment-anything-ios-app-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h2><p><a href="https://apps.apple.com/us/app/segment-anything/id6447527235" target="_blank" rel="noopener">Segment Anything</a> is an image segmentation app available for iPhone or iPad. The app is based on the open-source SAM (Segment Anything Model). All processing is done locally on your iPhone or iPad, requiring no network connection. The app has been optimized for smooth, reliable performance on your device.</p>
+<h2 id="exporting-to-onnx-format">Exporting to Onnx Format<a href="#exporting-to-onnx-format">
+    <svg role="img" aria-labelledby="exporting-to-onnx-format-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="exporting-to-onnx-format-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h2><p>SAM relies on two models: the image encoder (vit) for extracting image features and the mask_decoder for obtaining the final segmentation mask.</p>
+<h3 id="export-image-encoder-to-onnx">Export Image Encoder to Onnx<a href="#export-image-encoder-to-onnx">
+    <svg role="img" aria-labelledby="export-image-encoder-to-onnx-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="export-image-encoder-to-onnx-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3>
+
+  <span class="code-language">python</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span>sam_checkpoint <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./model/sam_vit_b_01ec64.pth&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span>model_type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;vit_b&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>device <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;cpu&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>sam <span style="color:#f92672">=</span> sam_model_registry[model_type](checkpoint<span style="color:#f92672">=</span>sam_checkpoint)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>sam<span style="color:#f92672">.</span>to(device<span style="color:#f92672">=</span>device)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span><span style="color:#75715e"># Load input data</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>input_data <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>load(<span style="color:#e6db74">&#34;./model/image_encoder/input.npy&#34;</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>input_tensor <span style="color:#f92672">=</span> torch<span style="color:#f92672">.</span>from_numpy(input_data)<span style="color:#f92672">.</span>float()
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span><span style="color:#75715e"># Export the image encoder model using torch.onnx</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>torch<span style="color:#f92672">.</span>onnx<span style="color:#f92672">.</span>export(
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>    sam<span style="color:#f92672">.</span>image_encoder,                      <span style="color:#75715e"># model instance</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>    input_tensor,                           <span style="color:#75715e"># input tensor</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    <span style="color:#e6db74">&#34;./model/image_encoder/image_encoder_vit.onnx&#34;</span>,  <span style="color:#75715e"># output ONNX file name</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    export_params<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,                     <span style="color:#75715e"># whether to export model parameters</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>    <span style="color:#75715e"># opset_version=11,                      # ONNX opset version</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>    do_constant_folding<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,               <span style="color:#75715e"># whether to perform constant folding optimization</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>    input_names<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;input&#34;</span>],                  <span style="color:#75715e"># input node names</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>    output_names<span style="color:#f92672">=</span>[<span style="color:#e6db74">&#34;output&#34;</span>],                <span style="color:#75715e"># output node names</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>)</span></span></code></pre></div>
+<h3 id="12-export-mask-decoder-to-onnx">1.2 Export Mask Decoder to Onnx<a href="#12-export-mask-decoder-to-onnx">
+    <svg role="img" aria-labelledby="12-export-mask-decoder-to-onnx-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="12-export-mask-decoder-to-onnx-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>To simplify the complexity of exporting the ONNX model, we have removed a few inputs: <code>mask_input</code>, <code>has_mask_input</code>, and <code>orig_im_size</code>. The <code>orig_im_size</code> will be defaulted to 1024x1024, which will greatly simplify the handling of variable-length dimensions in ONNX, making it easier for us to port it to iOS later. We temporarily do not need <code>mask_input</code>, so it is directly removed.</p>
+
+
+  <span class="code-language">python</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1</span><span><span style="color:#75715e"># Export mask generator</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2</span><span><span style="color:#f92672">import</span> warnings
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3</span><span>onnx_model <span style="color:#f92672">=</span> SamOnnxModel(sam, return_single_mask<span style="color:#f92672">=</span><span style="color:#66d9ef">False</span>, return_extra_metrics<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 5</span><span>dynamic_axes <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 6</span><span>    <span style="color:#75715e"># &#34;point_coords&#34;: {1: &#34;num_points&#34;},</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 7</span><span>    <span style="color:#75715e"># &#34;point_labels&#34;: {1: &#34;num_points&#34;},</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 8</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 9</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">10</span><span>embed_dim <span style="color:#f92672">=</span> sam<span style="color:#f92672">.</span>prompt_encoder<span style="color:#f92672">.</span>embed_dim
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">11</span><span>embed_size <span style="color:#f92672">=</span> sam<span style="color:#f92672">.</span>prompt_encoder<span style="color:#f92672">.</span>image_embedding_size
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">12</span><span>mask_input_size <span style="color:#f92672">=</span> [<span style="color:#ae81ff">4</span> <span style="color:#f92672">*</span> x <span style="color:#66d9ef">for</span> x <span style="color:#f92672">in</span> embed_size]
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">13</span><span>batch_size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">14</span><span>num_points <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">15</span><span>dummy_inputs <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">16</span><span>    <span style="color:#e6db74">&#34;image_embeddings&#34;</span>: torch<span style="color:#f92672">.</span>randn(batch_size, embed_dim, <span style="color:#f92672">*</span>embed_size, dtype<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>float),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">17</span><span>    <span style="color:#e6db74">&#34;point_coords&#34;</span>: torch<span style="color:#f92672">.</span>randint(low<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, high<span style="color:#f92672">=</span><span style="color:#ae81ff">1024</span>, size<span style="color:#f92672">=</span>(batch_size, num_points, <span style="color:#ae81ff">2</span>), dtype<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>float),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">18</span><span>    <span style="color:#e6db74">&#34;point_labels&#34;</span>: torch<span style="color:#f92672">.</span>randint(low<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>, high<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, size<span style="color:#f92672">=</span>(batch_size, num_points), dtype<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>float),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">19</span><span>    <span style="color:#75715e"># &#34;mask_input&#34;: torch.randn(batch_size, 1, *mask_input_size, dtype=torch.float),</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">20</span><span>    <span style="color:#75715e"># &#34;has_mask_input&#34;: torch.tensor([batch_size], dtype=torch.float),</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">21</span><span>    <span style="color:#75715e"># &#34;orig_im_size&#34;: torch.tensor([1024, 1024], dtype=torch.float),</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">22</span><span>}
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">23</span><span>output_names <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">24</span><span>    <span style="color:#e6db74">&#34;masks&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">25</span><span>    <span style="color:#e6db74">&#34;scores&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">26</span><span>    <span style="color:#e6db74">&#34;stability_scores&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">27</span><span>    <span style="color:#e6db74">&#34;areas&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">28</span><span>    <span style="color:#e6db74">&#34;low_res_masks&#34;</span>]
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">29</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">30</span><span>onnx_model_path <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;./model/mask_decoder/mask_decoder.&#34;</span> <span style="color:#f92672">+</span> str(num_points) <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;.onnx&#34;</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">31</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">32</span><span><span style="color:#66d9ef">with</span> warnings<span style="color:#f92672">.</span>catch_warnings():
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">33</span><span>    warnings<span style="color:#f92672">.</span>filterwarnings(<span style="color:#e6db74">&#34;ignore&#34;</span>, category<span style="color:#f92672">=</span>torch<span style="color:#f92672">.</span>jit<span style="color:#f92672">.</span>TracerWarning)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">34</span><span>    warnings<span style="color:#f92672">.</span>filterwarnings(<span style="color:#e6db74">&#34;ignore&#34;</span>, category<span style="color:#f92672">=</span><span style="color:#a6e22e">UserWarning</span>)
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">35</span><span>    <span style="color:#66d9ef">with</span> open(onnx_model_path, <span style="color:#e6db74">&#34;wb&#34;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">36</span><span>        torch<span style="color:#f92672">.</span>onnx<span style="color:#f92672">.</span>export(
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">37</span><span>            onnx_model,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">38</span><span>            tuple(dummy_inputs<span style="color:#f92672">.</span>values()),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">39</span><span>            f,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">40</span><span>            export_params<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">41</span><span>            verbose<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">42</span><span>            opset_version<span style="color:#f92672">=</span><span style="color:#ae81ff">11</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">43</span><span>            do_constant_folding<span style="color:#f92672">=</span><span style="color:#66d9ef">True</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">44</span><span>            input_names<span style="color:#f92672">=</span>list(dummy_inputs<span style="color:#f92672">.</span>keys()),
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">45</span><span>            output_names<span style="color:#f92672">=</span>output_names,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">46</span><span>            dynamic_axes<span style="color:#f92672">=</span>dynamic_axes,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">47</span><span>        )    
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">48</span><span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">49</span><span>print(<span style="color:#e6db74">&#34;model exported&#34;</span>)</span></span></code></pre></div>
+<h2 id="running-the-onnx-model-on-ios-devices">Running the ONNX Model on iOS Devices<a href="#running-the-onnx-model-on-ios-devices">
+    <svg role="img" aria-labelledby="running-the-onnx-model-on-ios-devices-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="running-the-onnx-model-on-ios-devices-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h2><h3 id="utilizing-mpsx-library">Utilizing MPSX Library<a href="#utilizing-mpsx-library">
+    <svg role="img" aria-labelledby="utilizing-mpsx-library-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="utilizing-mpsx-library-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>To run the ONNX model on iOS, we leveraged a closed-source modification of the <a href="https://github.com/prisma-ai/MPSX" target="_blank" rel="noopener">MPSX library</a>. MPSX is an excellent open-source project that allows you to load ONNX models on iOS using Swift and perform inference in a straightforward manner.</p>
+<h3 id="enhancements-to-mpsx">Enhancements to MPSX<a href="#enhancements-to-mpsx">
+    <svg role="img" aria-labelledby="enhancements-to-mpsx-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="enhancements-to-mpsx-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>We made extensive enhancements to the MPSX library to support a more comprehensive set of ONNX operators and offer a more flexible way to invoke the model. These modifications enabled us to integrate the ONNX model seamlessly into our iOS application.</p>
+<h3 id="code-snippet-loading-and-running-the-onnx-model">Code Snippet: Loading and Running the ONNX Model<a href="#code-snippet-loading-and-running-the-onnx-model">
+    <svg role="img" aria-labelledby="code-snippet-loading-and-running-the-onnx-model-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="code-snippet-loading-and-running-the-onnx-model-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h3><p>Below is a Swift code snippet that demonstrates how to load the ONNX model and perform inference:</p>
+
+
+  <span class="code-language">swift</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-swift" data-lang="swift"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span><span style="color:#66d9ef">let</span> graph = buildGraphVit(path: folder <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;image_encoder_vit.sim.f16.onnx&#34;</span>,
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">2</span><span>                          floatPrecision: .float16, 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">3</span><span>                          input: <span style="color:#e6db74">&#34;input&#34;</span>, 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">4</span><span>                          output: <span style="color:#e6db74">&#34;output&#34;</span>, 
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">5</span><span>                          inputShape: Shape([<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1024</span>, <span style="color:#ae81ff">1024</span>]))
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">6</span><span>        
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">7</span><span><span style="color:#66d9ef">let</span> input = Tensor.loadFromNpy(path: folder <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;input.npy&#34;</span>)<span style="color:#f92672">!</span>
+</span></span><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">8</span><span><span style="color:#66d9ef">let</span> output = graph.forward(inputs: [<span style="color:#e6db74">&#34;input&#34;</span>: input], outputs: [<span style="color:#e6db74">&#34;output&#34;</span>])[<span style="color:#e6db74">&#34;output&#34;</span>]<span style="color:#f92672">!</span></span></span></code></pre></div>
+<h2 id="interesting-tidbits">Interesting Tidbits<a href="#interesting-tidbits">
+    <svg role="img" aria-labelledby="interesting-tidbits-IconTitle" fill="var(--color-primary)" height="22" viewBox="0 0 24 24" width="22" xmlns="http://www.w3.org/2000/svg">
+      <title id="interesting-tidbits-IconTitle">Link to this heading</title>
+      <path d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76.0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71.0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71.0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76.0 5-2.24 5-5s-2.24-5-5-5z"></path>
+    </svg>
+  </a>
+</h2><p>It&rsquo;s worth noting that we encountered the following error when running inference on the ViT model on iOS 17:</p>
+
+
+  <span class="code-language">bash</span><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span style="white-space:pre;-webkit-user-select:none;user-select:none;margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f">1</span><span>Input N1D1C133H133W128 and output N1D19C19H7W128 tensors must have the same number of elements</span></span></code></pre></div>
+<p>The root cause of this issue lies in the <code>/layers.1/blocks.0/reshape</code> layer. The input tensor shape is <code>[1, 133, 133, 128]</code>, and the output tensor shape is <code>[1, 19, 7, 19, 7, 128]</code>. This Reshape operation was not a problem on iOS 16 and earlier versions but throws an error on iOS 17.</p>
+<p>After much deliberation, we found a workaround. We forced the output tensor shape from a 6-dimensional tensor to a 5-dimensional tensor, <code>[19, 7, 19, 7, 128]</code>. This does not change the semantics (we assume that the batch size is always 1 in our application). This method successfully bypasses the error.</p>
+
+    </article>
+    <aside>
+      <div class="single-terms">
+        
+          
+          <a class="term" href="https://ai-doge.github.io/tags/sam/">SAM</a></li>
+          
+          <a class="term" href="https://ai-doge.github.io/tags/vision/">Vision</a></li>
+          
+        
+      </div>
+      
+  
+  
+  
+
+  <section>
+    <h2>Share</h2>
+    <div class="social-links">
+      <ul class="social-icons--share">
+        
+        
+        <a href="https://twitter.com/intent/tweet?url=https%3a%2f%2fai-doge.github.io%2fposts%2fsegment_anything%2f&amp;text=Porting%20the%20Segment%20Anything%20Model%20to%20iOS" target="_blank" rel="noopener" aria-label="Share on Twitter" class="social-btn twitter">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-twitter" width="24" height="24" viewBox="0 0 384 312" fill="var(--color-primary)"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg></li>
+        </a>
+        
+        
+        
+        <a href="https://www.reddit.com/submit?url=https%3a%2f%2fai-doge.github.io%2fposts%2fsegment_anything%2f" target="_blank" rel="noopener" aria-label="Share on Reddit" class="social-btn reddit">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-reddit" width="24" height="24" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M24 11.779c0-1.459-1.192-2.645-2.657-2.645-.715 0-1.363.286-1.84.746-1.81-1.191-4.259-1.949-6.971-2.046l1.483-4.669 4.016.941-.006.058c0 1.193.975 2.163 2.174 2.163 1.198 0 2.172-.97 2.172-2.163s-.975-2.164-2.172-2.164c-.92 0-1.704.574-2.021 1.379l-4.329-1.015c-.189-.046-.381.063-.44.249l-1.654 5.207c-2.838.034-5.409.798-7.3 2.025-.474-.438-1.103-.712-1.799-.712-1.465 0-2.656 1.187-2.656 2.646 0 .97.533 1.811 1.317 2.271-.052.282-.086.567-.086.857 0 3.911 4.808 7.093 10.719 7.093s10.72-3.182 10.72-7.093c0-.274-.029-.544-.075-.81.832-.447 1.405-1.312 1.405-2.318zm-17.224 1.816c0-.868.71-1.575 1.582-1.575.872 0 1.581.707 1.581 1.575s-.709 1.574-1.581 1.574-1.582-.706-1.582-1.574zm9.061 4.669c-.797.793-2.048 1.179-3.824 1.179l-.013-.003-.013.003c-1.777 0-3.028-.386-3.824-1.179-.145-.144-.145-.379 0-.523.145-.145.381-.145.526 0 .65.647 1.729.961 3.298.961l.013.003.013-.003c1.569 0 2.648-.315 3.298-.962.145-.145.381-.144.526 0 .145.145.145.379 0 .524zm-.189-3.095c-.872 0-1.581-.706-1.581-1.574 0-.868.709-1.575 1.581-1.575s1.581.707 1.581 1.575-.709 1.574-1.581 1.574z"/></svg></li>
+        </a>
+        
+        
+                
+        <a href="https://www.facebook.com/sharer.php?u=https%3a%2f%2fai-doge.github.io%2fposts%2fsegment_anything%2f" target="_blank" rel="noopener" aria-label="Share on Facebook" class="social-btn facebook">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-facebook" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="m0 32v288c0 17.5 14.5 32 32 32h288c17.5 0 32-14.5 32-32v-288c0-17.5-14.5-32-32-32h-288c-17.5 0-32 14.5-32 32zm320 0v288h-83v-108h41.5l6-48h-47.5v-31c0-14 3.5-23.5 23.5-23.5h26v-43.5c-4.4-.6-19.8-1.5-37.5-1.5-36.9 0-62 22.2-62 63.5v36h-42v48h42v108h-155v-288z"/></svg></li>
+        </a>
+        
+        
+        
+        <a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3a%2f%2fai-doge.github.io%2fposts%2fsegment_anything%2f&amp;source=https%3a%2f%2fai-doge.github.io%2fposts%2fsegment_anything%2f&amp;title=Porting%20the%20Segment%20Anything%20Model%20to%20iOS&amp;summary=Porting%20the%20Segment%20Anything%20Model%20to%20iOS" target="_blank" rel="noopener" aria-label="Share on LinkedIn" class="social-btn linkedin">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-linkedin" width="24" height="24" viewBox="0 0 352 352" fill="var(--color-primary)"><path d="M0,40v272c0,21.9,18.1,40,40,40h272c21.9,0,40-18.1,40-40V40c0-21.9-18.1-40-40-40H40C18.1,0,0,18.1,0,40z M312,32 c4.6,0,8,3.4,8,8v272c0,4.6-3.4,8-8,8H40c-4.6,0-8-3.4-8-8V40c0-4.6,3.4-8,8-8H312z M59.5,87c0,15.2,12.3,27.5,27.5,27.5 c15.2,0,27.5-12.3,27.5-27.5c0-15.2-12.3-27.5-27.5-27.5C71.8,59.5,59.5,71.8,59.5,87z M187,157h-1v-21h-45v152h47v-75 c0-19.8,3.9-39,28.5-39c24.2,0,24.5,22.4,24.5,40v74h47v-83.5c0-40.9-8.7-72-56.5-72C208.5,132.5,193.3,145.1,187,157z M64,288h47.5 V136H64V288z"/></svg></li>
+        </a>
+        
+        
+        
+        <a href="mailto:?subject=ai-doge%20-%20Porting%20the%20Segment%20Anything%20Model%20to%20iOS.&amp;body=Porting%20the%20Segment%20Anything%20Model%20to%20iOS%2c%20by%20ai-doge%0aPorting%20the%20Segment%20Anything%20Open-Source%20Image%20Segmentation%20Algorithm%20to%20iOS%0a%0ahttps%3a%2f%2fai-doge.github.io%2fposts%2fsegment_anything%2f%0a" target="_blank" class="social-btn email">
+          <li><svg xmlns="http://www.w3.org/2000/svg" class="icon icon-mail" width="24" height="24" viewBox="0 0 416 288" fill="var(--color-primary)"><path d="m0 16v256 16h16 384 16v-16-256-16h-16-384-16zm347 16-139 92.5-139-92.5zm-148 125.5 9 5.5 9-5.5 167-111.5v210h-352v-210z"/></svg></li>
+        </a>
+      </ul>
+    </div>
+  </section>
+  
+        
+
+  
+  
+
+        
+  <section>
+    <h2>Read Next</h2>
+    <div class="single-next-previous">
+      
+        <a class="previous" href="https://ai-doge.github.io/posts/llama-ios/">&laquo; Port the LLaMa Model on iOS</a>
+      
+      
+    </div>
+  </section>
+
+      
+    </aside>
+  </div>
+</div>
+
+    </main><footer>
+  
+  <div class="section footer">
+    <p class="footer-copyright">&copy; 2023 &middot; 
+      <a href="https://ai-doge.github.io/">ai-doge</a>
+      
+        <span>&middot; Built with <a href="https://github.com/wjh18/hugo-liftoff" target="_blank" rel="noopener">Hugo Liftoff</a> theme.</span>
+      
+    </p>
+    
+      <div class="footer-socials">
+        
+<div class="social-links">
+  <ul class="social-icons">
+    
+    
+    <li>
+      <a href="https://twitter.com/aidogeshow" target="_blank" rel="noopener" aria-label="Visit Twitter profile" class="social-btn twitter">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-twitter" width="24" height="24" viewBox="0 0 384 312" fill="var(--color-primary)"><path d="m384 36.9c-14.1 6.3-29.3 10.5-45.2 12.4 16.3-9.7 28.8-25.2 34.6-43.6-15.2 9-32.1 15.6-50 19.1-14.4-15.2-34.9-24.8-57.5-24.8-43.5 0-78.8 35.3-78.8 78.8 0 6.2.7 12.2 2 17.9-65.5-3.3-123.5-34.6-162.4-82.3-6.7 11.6-10.6 25.2-10.6 39.6 0 27.3 13.9 51.4 35 65.6-12.9-.4-25.1-4-35.7-9.9v1c0 38.2 27.2 70 63.2 77.2-6.6 1.8-13.6 2.8-20.8 2.8-5.1 0-10-.5-14.8-1.4 10 31.3 39.1 54.1 73.6 54.7-27 21.1-60.9 33.7-97.8 33.7-6.4 0-12.6-.4-18.8-1.1 34.9 22.4 76.3 35.4 120.8 35.4 144.9 0 224.1-120 224.1-224.1 0-3.4-.1-6.8-.2-10.2 15.4-11.1 28.7-25 39.3-40.8z"/></svg>
+      </a>
+    </li>
+    
+
+    
+    
+
+    
+    
+    <li>
+      <a href="https://github.com/ai-doge" target="_blank" rel="noopener" aria-label="Visit Github profile" class="social-btn github">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-github" width="24" height="24" viewBox="0 0 24 24" fill="var(--color-primary)"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+      </a>
+    </li>
+    
+
+    
+    
+
+    
+    
+
+    
+    
+  </ul>
+</div>
+
+      </div>
+    
+  </div>
+</footer>
+
+  
+
+
+
+
+
+  
+  
+  
+    
+    
+  
+
+
+
+
+  
+  
+    
+
+<script src="https://ai-doge.github.io/main.min.js"></script>
+
+
+
+  
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WMMNNH5CCF"></script>
+<script>
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.dataLayer = window.dataLayer || [];
+	function gtag(){dataLayer.push(arguments);}
+	gtag('js', new Date());
+	gtag('config', 'G-WMMNNH5CCF', { 'anonymize_ip': false });
+}
+</script>
+
+</body>
+</html>
