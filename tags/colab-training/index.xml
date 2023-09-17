@@ -8,6 +8,15 @@
     <language>en-us</language>
     <lastBuildDate>Thu, 10 Aug 2023 11:43:24 +0800</lastBuildDate><atom:link href="https://ai-doge.github.io/tags/colab-training/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Porting the Segment Anything Model to iOS</title>
+      <link>https://ai-doge.github.io/posts/segment_anything/</link>
+      <pubDate>Sun, 17 Sep 2023 10:57:29 +0800</pubDate>
+      
+      <guid>https://ai-doge.github.io/posts/segment_anything/</guid>
+      <description>Porting the Segment Anything Model to an iOS App</description>
+    </item>
+    
+    <item>
       <title>Port the LLaMa Model on iOS</title>
       <link>https://ai-doge.github.io/posts/llama-ios/</link>
       <pubDate>Fri, 01 Sep 2023 21:21:46 -0500</pubDate>
