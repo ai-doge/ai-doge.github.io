@@ -7,6 +7,15 @@
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language><atom:link href="https://ai-doge.github.io/series/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>Using OpenCV2 and Vision framework on iOS</title>
+      <link>https://ai-doge.github.io/posts/use-opencv2-and-vision-framework-on-ios/</link>
+      <pubDate>Mon, 25 Sep 2023 13:54:33 +0800</pubDate>
+      
+      <guid>https://ai-doge.github.io/posts/use-opencv2-and-vision-framework-on-ios/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Porting the Segment Anything Model to iOS</title>
       <link>https://ai-doge.github.io/posts/segment_anything/</link>
       <pubDate>Sun, 17 Sep 2023 10:57:29 +0800</pubDate>
