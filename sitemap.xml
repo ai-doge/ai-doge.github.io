@@ -3,12 +3,17 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://ai-doge.github.io/</loc>
-    <lastmod>2023-10-01T00:00:00-05:00</lastmod>
+    <lastmod>2023-12-31T00:00:00-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url><url>
     <loc>https://ai-doge.github.io/projects/</loc>
-    <lastmod>2023-10-01T00:00:00-05:00</lastmod>
+    <lastmod>2023-12-31T00:00:00-05:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url><url>
+    <loc>https://ai-doge.github.io/projects/snap_erase/</loc>
+    <lastmod>2023-12-31T00:00:00-05:00</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url><url>
