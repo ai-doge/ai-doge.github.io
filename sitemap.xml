@@ -12,6 +12,11 @@
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
   </url><url>
+    <loc>https://ai-doge.github.io/projects/snapdetect_365/</loc>
+    <lastmod>2023-12-31T00:00:00-05:00</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url><url>
     <loc>https://ai-doge.github.io/projects/snap_erase/</loc>
     <lastmod>2023-12-31T00:00:00-05:00</lastmod>
     <changefreq>daily</changefreq>
